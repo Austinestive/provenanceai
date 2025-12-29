@@ -1,0 +1,97 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "provenanceai"
+version = "0.1.0"
+description = "Knowledge Provenance & Trust Infrastructure for AI Systems"
+readme = "README.md"
+authors = [
+    {name = "ProvenanceAI Team", email = "team@provenanceai.dev"},
+]
+license = {text = "Apache-2.0"}
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Text Processing :: Linguistic",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+keywords = ["ai", "provenance", "trust", "knowledge", "rag", "metadata", "nlp"]
+dependencies = [
+    "pymupdf>=1.23.0",  # PDF processing
+    "python-docx>=1.1.0",  # DOCX processing
+    "langdetect>=1.0.9",  # Language detection
+    "pydantic>=2.0.0",  # Data validation (optional for future)
+    "pyyaml>=6.0",  # YAML config support
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "pytest-benchmark>=4.0.0",
+    "black>=23.0.0",
+    "isort>=5.12.0",
+    "mypy>=1.0.0",
+    "flake8>=6.0.0",
+    "pre-commit>=3.0.0",
+]
+docs = [
+    "sphinx>=7.0.0",
+    "sphinx-rtd-theme>=1.0.0",
+    "myst-parser>=2.0.0",
+]
+full = [
+    "spacy>=3.0.0",  # Advanced NER
+    "scikit-learn>=1.0.0",  # ML features (future)
+]
+
+[project.urls]
+Homepage = "https://github.com/provenanceai/provenanceai"
+Documentation = "https://provenanceai.readthedocs.io"
+Repository = "https://github.com/provenanceai/provenanceai"
+Issues = "https://github.com/provenanceai/provenanceai/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-dir]
+provenanceai = "src/provenanceai"
+
+[tool.black]
+line-length = 88
+target-version = ['py39']
+
+[tool.isort]
+profile = "black"
+line_length = 88
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+markers = [
+    "slow: marks tests as slow",
+    "benchmark: performance benchmark tests",
+]
+addopts = [
+    "--strict-markers",
+    "--strict-config",
+    "--tb=short",
+]

@@ -1,0 +1,78 @@
+# File: config/production.yaml
+"""
+Production configuration for ProvenanceAI.
+"""
+
+trust_scoring:
+  # Production weights - more conservative than defaults
+  weights:
+    authority: 0.35
+    document_type: 0.25
+    review: 0.20
+    currency: 0.10
+    completeness: 0.10
+  
+  # Production document type scores
+  document_type_scores:
+    research_paper: 0.9
+    technical_report: 0.85
+    government_document: 0.9
+    conference_paper: 0.75
+    thesis: 0.8
+    patent: 0.7
+    newspaper_article: 0.6
+    preprint: 0.5
+    blog_post: 0.3
+    wikipedia_entry: 0.5
+    legal_document: 0.7
+    standard: 0.85
+    unknown: 0.4
+  
+  # Production review scores
+  review_scores:
+    peer_reviewed: 0.9
+    editor_reviewed: 0.7
+    self_published: 0.4
+    unreviewed: 0.3
+
+policy:
+  # License mappings for production
+  license_mappings:
+    government_document: public_domain
+    arxiv_preprint: CC_BY
+    academic_paper: copyrighted
+    technical_report: copyrighted
+    blog_post: copyrighted
+  
+  # Production trust thresholds
+  trust_thresholds:
+    high_trust: 0.8
+    medium_trust: 0.6
+    low_trust: 0.4
+  
+  # Default AI permissions for production
+  default_permissions:
+    high_trust:
+      - allowed
+      - attribution_required
+    medium_trust:
+      - allowed
+      - attribution_required
+      - non_commercial_only
+    low_trust:
+      - allowed
+      - attribution_required
+      - non_commercial_only
+      - no_training
+
+logging:
+  level: INFO
+  file: /var/log/provenanceai/provenanceai.log
+  max_size_mb: 100
+  backup_count: 5
+
+performance:
+  cache_enabled: true
+  cache_size: 1000
+  max_file_size_mb: 100
+  timeout_seconds: 30

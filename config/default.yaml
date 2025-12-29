@@ -1,0 +1,39 @@
+# File: config/default.yaml
+"""
+Default configuration for ProvenanceAI.
+"""
+
+trust_scoring:
+  weights:
+    authority: 0.3
+    document_type: 0.2
+    review: 0.25
+    currency: 0.15
+    completeness: 0.1
+  
+  document_type_scores:
+    research_paper: 0.9
+    government_document: 0.85
+    technical_report: 0.8
+    thesis: 0.8
+    conference_paper: 0.7
+    patent: 0.75
+    newspaper_article: 0.6
+    preprint: 0.5
+    blog_post: 0.3
+    wikipedia_entry: 0.5
+    legal_document: 0.7
+    standard: 0.85
+    unknown: 0.4
+  
+  review_scores:
+    peer_reviewed: 0.9
+    editor_reviewed: 0.7
+    self_published: 0.4
+    unreviewed: 0.3
+
+policy:
+  default_permissions:
+    high_trust: ["allowed", "attribution_required"]
+    medium_trust: ["allowed", "attribution_required"]
+    low_trust: ["allowed", "attribution_required", "non_commercial_only"]

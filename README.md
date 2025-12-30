@@ -32,7 +32,7 @@ ProvenanceAI solves this by providing a library-first, framework-agnostic soluti
 
 [![Python Version](https://img.shields.io/badge/python-3.9%2B-blue)](https://www.python.org/)
 [![License](https://img.shields.io/badge/license-Apache%202.0-green)](LICENSE)
-[![Tests](https://github.com/your-username/provenanceai/actions/workflows/tests.yml/badge.svg)](https://github.com/your-username/provenanceai/actions)
+[![Tests](https://github.com/Austinestive/provenanceai/actions/workflows/tests.yml/badge.svg)](https://github.com/Austinestive/provenanceai/actions)
 [![PyPI Version](https://img.shields.io/pypi/v/provenanceai)](https://pypi.org/project/provenanceai/)
 [![Code Coverage](https://img.shields.io/codecov/c/github/your-username/provenanceai)](https://codecov.io/gh/your-username/provenanceai)
 

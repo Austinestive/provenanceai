@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # ProvenanceAI
 
 **Knowledge Provenance & Trust Infrastructure for AI Systems**
@@ -25,7 +25,7 @@ ProvenanceAI solves this by providing a library-first, framework-agnostic soluti
 - **🔬 Standards-Inspired**: Based on library science principles (Dublin Core, PROV-O)
 
 ## Quick Start
-=======
+
 # ProvenanceAI 🏷️
 
 **Knowledge Provenance & Trust Infrastructure for AI Systems**
@@ -47,7 +47,6 @@ pip install provenanceai
 ```
 
 ### Basic Usage
->>>>>>> b59bdb02804e226e44d875829eb8fd371eefabd1
 
 ```python
 from provenanceai import analyze
@@ -245,9 +244,9 @@ Apache 2.0 - See [LICENSE](LICENSE) for details.
 ## 🔗 Links
 
 - **PyPI**: https://pypi.org/project/provenanceai/
-- **GitHub**: https://github.com/your-username/provenanceai
+- **GitHub**: https://github.com/Austinestive/provenanceai
 - **Documentation**: https://provenanceai.readthedocs.io/
-- **Issue Tracker**: https://github.com/your-username/provenanceai/issues
+- **Issue Tracker**: https://github.com/Austinestive/provenanceai/issues
 
 ## 🙏 Acknowledgments
 
@@ -258,10 +257,10 @@ Inspired by library science standards:
 
 ## 📞 Support
 
-- **GitHub Issues**: https://github.com/austinestive/provenanceai/issues
+- **GitHub Issues**: https://github.com/Austinestive/provenanceai/issues
 - **Documentation**: https://provenanceai.readthedocs.io/
 
 ---
 
 **ProvenanceAI**: Making AI systems smarter about where knowledge comes from. 🧠
->>>>>>> b59bdb02804e226e44d875829eb8fd371eefabd1
+

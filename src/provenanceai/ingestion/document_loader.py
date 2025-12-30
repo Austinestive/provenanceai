@@ -89,6 +89,11 @@ class TextDocumentLoader(DocumentLoader):
     def load_document(self, file_path: Union[str, Path]) -> Dict[str, Any]:
         path = Path(file_path)
 
+        if path.suffix.lower() not in {".txt", ".md", ".html", ".htm"}:
+            raise ValueError(
+                f"Unsupported file type for TextDocumentLoader: {path.suffix.lower()}"
+            )
+
         with open(path, "r", encoding="utf-8", errors="ignore") as f:
             content = f.read()
 

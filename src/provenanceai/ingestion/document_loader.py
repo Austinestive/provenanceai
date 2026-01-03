@@ -6,8 +6,9 @@ Supports multiple file formats with consistent metadata extraction.
 import hashlib
 import mimetypes
 import sys
+import types
 from pathlib import Path
-from typing import Any, BinaryIO, Dict, Optional, Union
+from typing import Any, BinaryIO, Dict, Optional, Type, Union, cast
 
 try:
     import fitz  # PyMuPDF
@@ -119,7 +120,7 @@ class PDFDocumentLoader(DocumentLoader):
     def __init__(self) -> None:
         super().__init__()
         # Lazy import to avoid dependency if not used
-        self._pymupdf = None
+        self._pymupdf: Optional[types.ModuleType] = None
 
     def _ensure_pymupdf(self) -> None:
         """Ensure PyMuPDF is available."""
@@ -138,9 +139,11 @@ class PDFDocumentLoader(DocumentLoader):
                     "Install with: pip install pymupdf"
                 )
             self._pymupdf = fitz
+        assert self._pymupdf is not None
 
     def load_document(self, file_path: Union[str, Path]) -> Dict[str, Any]:
         self._ensure_pymupdf()
+        assert self._pymupdf is not None
         path = Path(file_path)
 
         doc = self._pymupdf.open(str(path))
@@ -191,7 +194,7 @@ class DOCXDocumentLoader(DocumentLoader):
 
     def __init__(self) -> None:
         super().__init__()
-        self._python_docx = None
+        self._python_docx: Optional[types.ModuleType] = None
 
     def _ensure_python_docx(self) -> None:
         """Ensure python-docx is available."""
@@ -205,9 +208,11 @@ class DOCXDocumentLoader(DocumentLoader):
                     "python-docx is required for DOCX loading. "
                     "Install with: pip install python-docx"
                 )
+        assert self._python_docx is not None
 
     def load_document(self, file_path: Union[str, Path]) -> Dict[str, Any]:
         self._ensure_python_docx()
+        assert self._python_docx is not None
         path = Path(file_path)
 
         doc = self._python_docx.Document(str(path))
@@ -272,7 +277,8 @@ class DocumentLoaderFactory:
         loader_class = globals().get(loader_class_name)
         if loader_class is None:
             raise RuntimeError(f"Loader class not found: {loader_class_name}")
-
+        
+        loader_class = cast(Type[DocumentLoader], loader_class)
         return loader_class()
 
     @classmethod

@@ -93,11 +93,9 @@ def _load_config(config_path: Union[str, Path]) -> dict:
 
     with open(path, "r", encoding="utf-8") as f:
         if suffix == ".json":
-
-            return json.load(f)
+            return json.load(f)  # type: ignore[no-any-return]
         import yaml
-
-        return yaml.safe_load(f)
+        return yaml.safe_load(f)  # type: ignore[no-any-return]
 
 
 def _check_for_references(content: str) -> bool:

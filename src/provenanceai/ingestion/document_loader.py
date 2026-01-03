@@ -119,7 +119,7 @@ class PDFDocumentLoader(DocumentLoader):
     def __init__(self) -> None:
         super().__init__()
         # Lazy import to avoid dependency if not used
-        self._pymupdf = None
+        self._pymupdf: Optional[Any] = None
 
     def _ensure_pymupdf(self) -> None:
         """Ensure PyMuPDF is available."""
@@ -141,6 +141,7 @@ class PDFDocumentLoader(DocumentLoader):
 
     def load_document(self, file_path: Union[str, Path]) -> Dict[str, Any]:
         self._ensure_pymupdf()
+        assert self._pymupdf is not None  # Type narrowing for mypy
         path = Path(file_path)
 
         doc = self._pymupdf.open(str(path))
@@ -191,7 +192,7 @@ class DOCXDocumentLoader(DocumentLoader):
 
     def __init__(self) -> None:
         super().__init__()
-        self._python_docx = None
+        self._python_docx: Optional[Any] = None
 
     def _ensure_python_docx(self) -> None:
         """Ensure python-docx is available."""
@@ -208,6 +209,7 @@ class DOCXDocumentLoader(DocumentLoader):
 
     def load_document(self, file_path: Union[str, Path]) -> Dict[str, Any]:
         self._ensure_python_docx()
+        assert self._python_docx is not None  # Type narrowing for mypy
         path = Path(file_path)
 
         doc = self._python_docx.Document(str(path))
@@ -273,7 +275,7 @@ class DocumentLoaderFactory:
         if loader_class is None:
             raise RuntimeError(f"Loader class not found: {loader_class_name}")
 
-        return loader_class()
+        return loader_class()  # type: ignore[no-any-return]
 
     @classmethod
     def load_document(cls, file_path: Union[str, Path]) -> Dict[str, Any]:

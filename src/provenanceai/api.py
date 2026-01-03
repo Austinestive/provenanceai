@@ -5,7 +5,7 @@ Provides the unified analyze() function.
 
 import json
 from pathlib import Path
-from typing import Optional, Union
+from typing import Any, Dict, Optional, Union, cast
 
 from .core.schema import ContentBlock, IdentityBlock, ProvenanceReport, TechnicalBlock
 from .inference.provenance_inferencer import ProvenanceInferencer
@@ -94,10 +94,10 @@ def _load_config(config_path: Union[str, Path]) -> dict:
     with open(path, "r", encoding="utf-8") as f:
         if suffix == ".json":
 
-            return json.load(f)
+            return cast(Dict[Any, Any], json.load(f))
         import yaml
 
-        return yaml.safe_load(f)
+        return cast(Dict[Any, Any], yaml.safe_load(f))
 
 
 def _check_for_references(content: str) -> bool:
